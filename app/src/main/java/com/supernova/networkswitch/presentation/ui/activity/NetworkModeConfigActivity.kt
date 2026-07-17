@@ -27,12 +27,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NetworkModeConfigActivity : ComponentActivity() {
-    
+
     private val viewModel: NetworkModeConfigViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         setContent {
             NetworkSwitchTheme {
                 NetworkModeConfigScreen(
@@ -54,15 +54,15 @@ private fun NetworkModeConfigScreen(
     val currentConfig by viewModel.currentConfig.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val configSaved by viewModel.configSaved.collectAsState()
-    
-    // Show toast when configuration is saved
+
+    // 保存配置成功时显示提示
     LaunchedEffect(configSaved) {
         if (configSaved) {
             Toast.makeText(context, context.getString(R.string.configuration_saved), Toast.LENGTH_SHORT).show()
             viewModel.resetSavedState()
         }
     }
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -71,7 +71,7 @@ private fun NetworkModeConfigScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "返回"
                         )
                     }
                 }
@@ -86,7 +86,7 @@ private fun NetworkModeConfigScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Description Card
+            // 说明卡片
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
@@ -103,9 +103,9 @@ private fun NetworkModeConfigScreen(
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
-                    
+
                     Spacer(modifier = Modifier.height(8.dp))
-                    
+
                     Text(
                         text = stringResource(R.string.network_mode_config_desc),
                         style = MaterialTheme.typography.bodyMedium,
@@ -113,8 +113,8 @@ private fun NetworkModeConfigScreen(
                     )
                 }
             }
-            
-            // Mode A Selection
+
+            // 模式 A 选择
             NetworkModeSelector(
                 label = stringResource(R.string.mode_a_label),
                 selectedMode = currentConfig.modeA,
@@ -122,8 +122,8 @@ private fun NetworkModeConfigScreen(
                     viewModel.updateModeA(mode)
                 }
             )
-            
-            // Mode B Selection
+
+            // 模式 B 选择
             NetworkModeSelector(
                 label = stringResource(R.string.mode_b_label),
                 selectedMode = currentConfig.modeB,
@@ -131,8 +131,8 @@ private fun NetworkModeConfigScreen(
                     viewModel.updateModeB(mode)
                 }
             )
-            
-            // Current Configuration Preview
+
+            // 当前配置预览
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -142,27 +142,27 @@ private fun NetworkModeConfigScreen(
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "Configuration Preview",
+                        text = "配置预览",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
-                    
+
                     Spacer(modifier = Modifier.height(8.dp))
-                    
+
                     Text(
-                        text = "Toggle will switch between:",
+                        text = "切换将在以下两种模式之间交替：",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    
+
                     Spacer(modifier = Modifier.height(4.dp))
-                    
+
                     Text(
                         text = "• ${currentConfig.modeA.displayName}",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
-                    
+
                     Text(
                         text = "• ${currentConfig.modeB.displayName}",
                         style = MaterialTheme.typography.bodyMedium,
@@ -170,8 +170,8 @@ private fun NetworkModeConfigScreen(
                     )
                 }
             }
-            
-            // Save Button
+
+            // 保存按钮
             Button(
                 onClick = { viewModel.saveConfiguration() },
                 enabled = !isLoading && currentConfig.modeA != currentConfig.modeB,
@@ -186,8 +186,8 @@ private fun NetworkModeConfigScreen(
                 }
                 Text(stringResource(R.string.save_configuration))
             }
-            
-            // Warning if both modes are the same
+
+            // 两种模式相同时的警告
             if (currentConfig.modeA == currentConfig.modeB) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -207,7 +207,7 @@ private fun NetworkModeConfigScreen(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Mode A and Mode B must be different",
+                            text = "模式 A 和模式 B 必须不同",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onErrorContainer
                         )
