@@ -38,12 +38,12 @@ fun CompatibilityCard(
                     CircularProgressIndicator(modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Checking compatibility...",
+                        text = "正在检查兼容性...",
                         style = MaterialTheme.typography.titleMedium,
                         textAlign = TextAlign.Center
                     )
                 }
-                
+
                 is CompatibilityState.Compatible -> {
                     Icon(
                         imageVector = Icons.Default.CheckCircle,
@@ -53,20 +53,20 @@ fun CompatibilityCard(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Device Compatible",
+                        text = "设备兼容",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        text = "Using ${currentControlMethod.displayName()} method",
+                        text = "当前使用 ${currentControlMethod.displayName()} 方式",
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Medium
                     )
                 }
-                
+
                 is CompatibilityState.PermissionDenied -> {
                     Icon(
                         imageVector = Icons.Default.Warning,
@@ -76,23 +76,23 @@ fun CompatibilityCard(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "${compatibilityState.method.displayName()} Access Denied",
+                        text = "${compatibilityState.method.displayName()} 访问被拒绝",
                         style = MaterialTheme.typography.titleMedium,
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        text = if (compatibilityState.method == ControlMethod.ROOT) 
-                            "Please grant root access to use this app" 
-                        else 
-                            "Please grant Shizuku permission or install Shizuku",
+                        text = if (compatibilityState.method == ControlMethod.ROOT)
+                            "请授予 Root 权限以使用本应用"
+                        else
+                            "请授予 Shizuku 权限或安装 Shizuku",
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(modifier = Modifier.height(16.dp))
-                    Button(onClick = onRetryClick) { Text("Retry") }
+                    Button(onClick = onRetryClick) { Text("重试") }
                 }
-                
+
                 is CompatibilityState.Incompatible -> {
                     Icon(
                         imageVector = Icons.Default.Error,
@@ -102,7 +102,7 @@ fun CompatibilityCard(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Device Not Compatible",
+                        text = "设备不兼容",
                         style = MaterialTheme.typography.titleMedium,
                         textAlign = TextAlign.Center
                     )
@@ -113,7 +113,7 @@ fun CompatibilityCard(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(modifier = Modifier.height(16.dp))
-                    Button(onClick = onRetryClick) { Text("Retry") }
+                    Button(onClick = onRetryClick) { Text("重试") }
                 }
             }
         }
@@ -129,32 +129,32 @@ fun NetworkToggleCard(
     modifier: Modifier = Modifier
 ) {
     CardSection(
-        title = "Network Mode",
+        title = "网络模式",
         modifier = modifier
     ) {
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         Text(
-            text = if (currentMode != null) "Current: ${currentMode.displayName}" else "Network mode unavailable",
+            text = if (currentMode != null) "当前：${currentMode.displayName}" else "网络模式不可用",
             style = MaterialTheme.typography.titleMedium,
             color = if (currentMode != null) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
         )
-        
+
         Spacer(modifier = Modifier.height(8.dp))
-        
+
         Text(
             text = if (currentMode != null) {
-                "Tap to switch to the configured alternate network mode"
+                "点击以切换至已配置的备用网络模式"
             } else {
-                "Unable to detect current network mode"
+                "无法检测当前网络模式"
             },
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-        
+
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         Button(
             onClick = onToggleClick,
             enabled = !isLoading && currentMode != null,
@@ -186,15 +186,15 @@ fun QuickSettingsHintCard(modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "💡 Pro Tip",
+                text = "💡 使用技巧",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold
             )
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             Text(
-                text = "Add the \"Network Switch Toggle\" tile to your Quick Settings for instant network switching. Pull down your notification panel, tap the pencil icon, and add the tile.",
+                text = "将"网络切换开关"磁贴添加到快捷设置，即可实现即时网络切换。下拉通知栏，点击铅笔图标，然后添加该磁贴即可。",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
