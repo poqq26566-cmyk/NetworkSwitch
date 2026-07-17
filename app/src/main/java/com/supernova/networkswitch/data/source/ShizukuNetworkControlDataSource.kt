@@ -36,7 +36,7 @@ class  ShizukuNetworkControlDataSource @Inject constructor(
         return try {
             // Check if Shizuku service is running
             if (!Shizuku.pingBinder()) {
-                return CompatibilityState.Incompatible("Shizuku service not running")
+                return CompatibilityState.Incompatible("Shizuku未运行")
             }
             
             // Check if Shizuku permission is granted
@@ -47,7 +47,7 @@ class  ShizukuNetworkControlDataSource @Inject constructor(
             // Both service and permission checks passed
             CompatibilityState.Compatible
         } catch (e: Exception) {
-            CompatibilityState.Incompatible("Shizuku not available: ${e.message}")
+            CompatibilityState.Incompatible("Shizuku不可用: ${e.message}")
         }
     }
 
@@ -72,7 +72,7 @@ class  ShizukuNetworkControlDataSource @Inject constructor(
                 throw e
             }
         } else {
-            throw SecurityException("Shizuku permission not granted or service binding failed")
+            throw SecurityException("Shizuku 权限未授予或服务绑定失败")
         }
     }
 
