@@ -194,7 +194,8 @@ fun QuickSettingsHintCard(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "将"网络切换开关"磁贴添加到快捷设置，即可实现即时网络切换。下拉通知栏，点击铅笔图标，然后添加该磁贴即可。",
+                // ✅ 修复：将中文弯引号改为直角引号【】或书名号《》
+                text = "将【网络切换开关】磁贴添加到快捷设置，即可实现即时网络切换。下拉通知栏，点击铅笔图标，然后添加该磁贴即可。",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
