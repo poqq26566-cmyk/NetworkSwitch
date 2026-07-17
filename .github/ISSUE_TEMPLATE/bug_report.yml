@@ -1,5 +1,5 @@
-name: Bug Report
-description: Report a bug or issue with the Network Switch app
+name: Bug 报告
+description: 报告网络切换应用的 Bug 或问题
 title: "[BUG] "
 labels: ["bug", "triage"]
 assignees:
@@ -9,109 +9,109 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible to help us resolve the issue.
+        感谢您填写此 Bug 报告！请尽可能提供详细信息，以帮助我们解决问题。
 
   - type: checkboxes
     id: terms
     attributes:
-      label: Prerequisites
+      label: 前提条件
       options:
-        - label: I have searched existing issues to ensure this is not a duplicate
+        - label: 我已搜索现有 Issue，确认这不是重复问题
           required: true
-        - label: I have read the documentation
+        - label: 我已阅读相关文档
           required: true
-        - label: I am using the latest version of the app
+        - label: 我正在使用最新版本的应用
           required: true
 
   - type: dropdown
     id: device-type
     attributes:
-      label: Device Type
-      description: What type of device are you using?
+      label: 设备类型
+      description: 您使用的是什么类型的设备？
       options:
-        - Android Phone
-        - Android Tablet
-        - Other (please specify in description)
+        - Android 手机
+        - Android 平板
+        - 其他（请在描述中注明）
     validations:
       required: true
 
   - type: input
     id: android-version
     attributes:
-      label: Android Version
-      description: What version of Android are you running?
-      placeholder: "e.g., Android 14, Android 13, etc."
+      label: Android 版本
+      description: 您运行的是哪个版本的 Android？
+      placeholder: "例如：Android 14、Android 13 等"
     validations:
       required: true
 
   - type: input
     id: app-version
     attributes:
-      label: App Version
-      description: What version of Network Switch are you using?
-      placeholder: "e.g., v1.0.9"
+      label: 应用版本
+      description: 您使用的是哪个版本的网络切换？
+      placeholder: "例如：v1.0.9"
     validations:
       required: true
 
   - type: dropdown
     id: root-method
     attributes:
-      label: Root/Permission Method
-      description: How are you providing root access to the app?
+      label: Root/权限方式
+      description: 您如何为应用提供 Root 访问权限？
       options:
-        - Root (Magisk)
-        - Root (SuperSU)
+        - Root（Magisk）
+        - Root（SuperSU）
         - Shizuku
-        - Not rooted/No special permissions
-        - Other (please specify)
+        - 未 Root / 无特殊权限
+        - 其他（请注明）
     validations:
       required: true
 
   - type: textarea
     id: bug-description
     attributes:
-      label: Bug Description
-      description: A clear and concise description of what the bug is
-      placeholder: Describe the issue you're experiencing...
+      label: Bug 描述
+      description: 请清晰简洁地描述该 Bug 是什么
+      placeholder: 描述您遇到的问题...
     validations:
       required: true
 
   - type: textarea
     id: steps-to-reproduce
     attributes:
-      label: Steps to Reproduce
-      description: Steps to reproduce the behavior
+      label: 复现步骤
+      description: 复现该行为的步骤
       placeholder: |
-        1. Go to '...'
-        2. Click on '...'
-        3. Scroll down to '...'
-        4. See error
+        1. 前往"..."
+        2. 点击"..."
+        3. 滚动到"..."
+        4. 出现错误
     validations:
       required: true
 
   - type: textarea
     id: expected-behavior
     attributes:
-      label: Expected Behavior
-      description: A clear and concise description of what you expected to happen
-      placeholder: What should have happened instead?
+      label: 预期行为
+      description: 请清晰简洁地描述您期望发生的情况
+      placeholder: 应该发生什么？
     validations:
       required: true
 
   - type: textarea
     id: actual-behavior
     attributes:
-      label: Actual Behavior
-      description: What actually happened?
-      placeholder: What actually happened?
+      label: 实际行为
+      description: 实际发生了什么？
+      placeholder: 实际发生了什么？
     validations:
       required: true
 
   - type: dropdown
     id: network-type
     attributes:
-      label: Network Type Affected
-      description: Which network type is affected by this issue?
+      label: 受影响的网络类型
+      description: 此问题影响哪种网络类型？
       multiple: true
       options:
         - 5G
@@ -119,41 +119,42 @@ body:
         - 3G
         - 2G
         - WiFi
-        - All network types
-        - Not network related
+        - 所有网络类型
+        - 与网络无关
 
   - type: textarea
     id: logs
     attributes:
-      label: Logs
-      description: If applicable, add logs to help explain your problem
-      placeholder: Paste any relevant logs here...
+      label: 日志
+      description: 如适用，请添加日志以帮助解释问题
+      placeholder: 在此粘贴相关日志...
       render: shell
 
   - type: textarea
     id: screenshots
     attributes:
-      label: Screenshots
-      description: If applicable, add screenshots to help explain your problem
-      placeholder: Drag and drop images here or paste image URLs
+      label: 截图
+      description: 如适用，请添加截图以帮助解释问题
+      placeholder: 将图片拖放至此处或粘贴图片链接
 
   - type: textarea
     id: additional-context
     attributes:
-      label: Additional Context
-      description: Add any other context about the problem here
-      placeholder: Any additional information that might be helpful...
+      label: 附加信息
+      description: 在此添加有关问题的任何其他背景信息
+      placeholder: 任何可能有帮助的附加信息...
 
   - type: input
     id: device-model
     attributes:
-      label: Device Model
-      description: What device model are you using?
-      placeholder: "e.g., Samsung Galaxy S24, Pixel 8 Pro, etc."
+      label: 设备型号
+      description: 您使用的是什么设备型号？
+      placeholder: "例如：Samsung Galaxy S24、Pixel 8 Pro 等"
 
   - type: input
     id: carrier
     attributes:
-      label: Mobile Carrier
-      description: What mobile carrier/network operator are you using?
-      placeholder: "e.g., Verizon, AT&T, T-Mobile, etc."
+      label: 运营商
+      description: 您使用的是哪家移动运营商？
+      placeholder: "例如：中国移动、中国联通、中国电信等"
+      
