@@ -27,10 +27,10 @@ class NetworkModeTest {
     
     @Test
     fun testNetworkModeDisplayNames() {
-        assertEquals("2G Only (GSM)", NetworkMode.GSM_ONLY.displayName)
-        assertEquals("3G Only (WCDMA)", NetworkMode.WCDMA_ONLY.displayName)
-        assertEquals("4G Only (LTE)", NetworkMode.LTE_ONLY.displayName)
-        assertEquals("5G Only (NR)", NetworkMode.NR_ONLY.displayName)
-        assertEquals("4G/5G (NR/LTE)", NetworkMode.NR_LTE.displayName)
+        assertEquals("仅 2G（GSM）", NetworkMode.GSM_ONLY.displayName)
+        assertEquals("仅 3G（WCDMA）", NetworkMode.WCDMA_ONLY.displayName)
+        assertEquals("仅 4G（LTE）", NetworkMode.LTE_ONLY.displayName)
+        assertEquals("仅 5G（NR）", NetworkMode.NR_ONLY.displayName)
+        assertEquals("4G/5G（NR/LTE）", NetworkMode.NR_LTE.displayName)
     }
 }
