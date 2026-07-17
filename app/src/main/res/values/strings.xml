@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Network Switch</string>
-    <string name="network_switch">Network Switch</string>
-    
-    <!-- Configuration -->
-    <string name="network_mode_config">Network Mode Configuration</string>
-    <string name="network_mode_config_desc">Choose which two network modes to toggle between</string>
-    <string name="mode_a_label">Mode A</string>
-    <string name="mode_b_label">Mode B</string>
-    <string name="save_configuration">Save Configuration</string>
-    <string name="configuration_saved">Configuration saved successfully</string>
+    <string name="app_name">网络切换</string>
+    <string name="network_switch">网络切换</string>
+
+    <!-- 配置 -->
+    <string name="network_mode_config">网络模式配置</string>
+    <string name="network_mode_config_desc">选择要在两种网络模式之间切换的组合</string>
+    <string name="mode_a_label">模式 A</string>
+    <string name="mode_b_label">模式 B</string>
+    <string name="save_configuration">保存配置</string>
+    <string name="configuration_saved">配置已成功保存</string>
 </resources>
