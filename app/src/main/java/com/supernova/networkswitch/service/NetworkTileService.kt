@@ -3,6 +3,7 @@ package com.supernova.networkswitch.service
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.telephony.SubscriptionManager
+import com.supernova.networkswitch.domain.model.ControlMethod
 import com.supernova.networkswitch.domain.model.NetworkMode
 import com.supernova.networkswitch.domain.model.ToggleModeConfig
 import com.supernova.networkswitch.domain.usecase.GetCurrentNetworkModeUseCase
@@ -37,20 +38,17 @@ class NetworkTileService : TileService() {
         super.onStartListening()
         serviceScope.launch {
             try {
-                // 监听切换配置变化
                 preferencesRepository.observeToggleModeConfig().collect { newConfig ->
                     toggleConfig = newConfig
                     refreshNetworkState()
                 }
             } catch (_: Exception) {
-                // 静默处理错误
             }
         }
     }
 
     override fun onStopListening() {
         super.onStopListening()
-        // 磁贴不活跃时清理正在进行的操作
     }
 
     override fun onClick() {
@@ -88,7 +86,6 @@ class NetworkTileService : TileService() {
                     }
                 }
         } catch (_: Exception) {
-            // 静默处理错误
         }
     }
 
@@ -99,8 +96,6 @@ class NetworkTileService : TileService() {
 
                 if (config != null) {
                     state = Tile.STATE_ACTIVE
-
-                    // 显示当前模式和下一个切换目标模式
                     val currentMode = config.getCurrentMode()
                     val nextMode = config.getNextMode()
                     label = currentMode.displayName
@@ -113,7 +108,6 @@ class NetworkTileService : TileService() {
                 updateTile()
             }
         } catch (_: Exception) {
-            // 静默处理磁贴更新错误
         }
     }
 
