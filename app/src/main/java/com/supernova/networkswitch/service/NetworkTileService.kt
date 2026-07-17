@@ -94,12 +94,29 @@ class NetworkTileService : TileService() {
     }
     
     private fun updateTile() {
-        try {
-            qsTile?.apply {
-                val config = toggleConfig
-                
-                if (config != null) {
-                    state = Tile.STATE_ACTIVE
+    try {
+        qsTile?.apply {
+            val config = toggleConfig
+
+            if (config != null) {
+                state = Tile.STATE_ACTIVE
+
+                // 显示当前模式和下一个模式
+                val currentMode = config.getCurrentMode()
+                val nextMode = config.getNextMode()
+                label = currentMode.displayName
+                subtitle = "${nextMode.displayName}"
+            } else {
+                state = Tile.STATE_INACTIVE
+                label = "网络模式"
+                subtitle = "配置未加载"
+            }
+            updateTile()
+        }
+    } catch (_: Exception) {
+        // 静默处理磁贴更新错误
+    }
+    }
                     
                     // Show current and next modes
                     val currentMode = config.getCurrentMode()
