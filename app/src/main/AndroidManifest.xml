@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NetworkSwitch"
         tools:targetApi="31">
-        
+
         <activity
             android:name=".presentation.ui.activity.MainActivity"
             android:exported="true"
@@ -24,21 +24,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name=".presentation.ui.activity.SettingsActivity"
             android:exported="false"
-            android:label="Settings"
+            android:label="设置"
             android:parentActivityName=".presentation.ui.activity.MainActivity"
             android:theme="@style/Theme.NetworkSwitch" />
-            
+
         <activity
             android:name=".presentation.ui.activity.NetworkModeConfigActivity"
             android:exported="false"
             android:label="@string/network_mode_config"
             android:parentActivityName=".presentation.ui.activity.MainActivity"
             android:theme="@style/Theme.NetworkSwitch" />
-            
+
         <service
             android:name=".service.NetworkTileService"
             android:exported="true"
@@ -49,8 +49,8 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-        
-        <!-- Shizuku Provider -->
+
+        <!-- Shizuku 提供者 -->
         <provider
             android:name="rikka.shizuku.ShizukuProvider"
             android:authorities="${applicationId}.shizuku"
@@ -58,7 +58,7 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
-            
+
     </application>
 
 </manifest>
