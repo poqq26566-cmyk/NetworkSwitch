@@ -31,12 +31,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingsActivity : ComponentActivity() {
-    
+
     private val viewModel: SettingsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         setContent {
             NetworkSwitchTheme {
                 SettingsScreen(
@@ -55,16 +55,16 @@ private fun SettingsScreen(
     onBackClick: () -> Unit
 ) {
     val controlMethod by viewModel.controlMethod.collectAsState()
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Settings") },
+                title = { Text("设置") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "返回"
                         )
                     }
                 }
@@ -79,7 +79,7 @@ private fun SettingsScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Control Method Selection
+            // 控制方式选择
             ControlMethodCard(
                 selectedMethod = controlMethod,
                 onMethodSelected = { viewModel.updateControlMethod(it) },
@@ -87,8 +87,8 @@ private fun SettingsScreen(
                 shizukuCompatibility = viewModel.shizukuCompatibility,
                 onRetryClick = { viewModel.retryCompatibilityCheck() }
             )
-            
-            // About Section
+
+            // 关于部分
             AboutCard()
         }
     }
@@ -116,30 +116,30 @@ private fun ControlMethodCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Control Method",
+                    text = "控制方式",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
-                
+
                 IconButton(onClick = onRetryClick) {
                     Icon(
                         imageVector = Icons.Default.Refresh,
-                        contentDescription = "Refresh compatibility"
+                        contentDescription = "刷新兼容性"
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             Text(
-                text = "Choose how the app should control network settings. Root method requires a rooted device, while Shizuku method works with non-rooted devices that have Shizuku installed.",
+                text = "选择应用控制网络设置的方式。Root 方式需要已 Root 的设备，Shizuku 方式适用于安装了 Shizuku 的未 Root 设备。",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
-            // Root Method Option
+
+            // Root 方式选项
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -157,18 +157,18 @@ private fun ControlMethodCard(
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Root Method",
+                        text = "Root 方式",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "Requires rooted device with root access granted",
+                        text = "需要已 Root 的设备并授予 Root 权限",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                
-                // Compatibility status indicator
+
+                // 兼容性状态指示器
                 when (rootCompatibility) {
                     is CompatibilityState.Pending -> {
                         CircularProgressIndicator(
@@ -179,7 +179,7 @@ private fun ControlMethodCard(
                     is CompatibilityState.Compatible -> {
                         Icon(
                             imageVector = Icons.Default.CheckCircle,
-                            contentDescription = "Compatible",
+                            contentDescription = "兼容",
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp)
                         )
@@ -187,7 +187,7 @@ private fun ControlMethodCard(
                     is CompatibilityState.PermissionDenied -> {
                         Icon(
                             imageVector = Icons.Default.Error,
-                            contentDescription = "Permission denied",
+                            contentDescription = "权限被拒绝",
                             tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(20.dp)
                         )
@@ -195,15 +195,15 @@ private fun ControlMethodCard(
                     is CompatibilityState.Incompatible -> {
                         Icon(
                             imageVector = Icons.Default.Error,
-                            contentDescription = "Error",
+                            contentDescription = "错误",
                             tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(20.dp)
                         )
                     }
                 }
             }
-            
-            // Shizuku Method Option
+
+            // Shizuku 方式选项
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -221,18 +221,18 @@ private fun ControlMethodCard(
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Shizuku Method",
+                        text = "Shizuku 方式",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "Works with non-rooted devices using Shizuku service",
+                        text = "适用于通过 Shizuku 服务的未 Root 设备",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                
-                // Compatibility status indicator
+
+                // 兼容性状态指示器
                 when (shizukuCompatibility) {
                     is CompatibilityState.Pending -> {
                         CircularProgressIndicator(
@@ -243,7 +243,7 @@ private fun ControlMethodCard(
                     is CompatibilityState.Compatible -> {
                         Icon(
                             imageVector = Icons.Default.CheckCircle,
-                            contentDescription = "Compatible",
+                            contentDescription = "兼容",
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp)
                         )
@@ -251,7 +251,7 @@ private fun ControlMethodCard(
                     is CompatibilityState.PermissionDenied -> {
                         Icon(
                             imageVector = Icons.Default.Error,
-                            contentDescription = "Permission denied",
+                            contentDescription = "权限被拒绝",
                             tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(20.dp)
                         )
@@ -259,7 +259,7 @@ private fun ControlMethodCard(
                     is CompatibilityState.Incompatible -> {
                         Icon(
                             imageVector = Icons.Default.Error,
-                            contentDescription = "Not available",
+                            contentDescription = "不可用",
                             tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(20.dp)
                         )
@@ -281,55 +281,55 @@ private fun AboutCard() {
                 .padding(16.dp)
         ) {
             Text(
-                text = "About",
+                text = "关于",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             Text(
-                text = "Source Code",
+                text = "源代码",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Medium
             )
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             LinkItem(
                 title = "NetworkSwitch",
                 subtitle = "https://github.com/aunchagaonkar/NetworkSwitch",
                 link = "https://github.com/aunchagaonkar/NetworkSwitch"
             )
-            
+
             Spacer(modifier = Modifier.height(24.dp))
-            
+
             Text(
-                text = "Open Source Licenses",
+                text = "开源许可证",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Medium
             )
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             LinkItem(
                 title = "Shizuku",
                 subtitle = "Apache License 2.0\nhttps://github.com/RikkaApps/Shizuku",
                 link = "https://github.com/RikkaApps/Shizuku"
             )
-            
+
             LinkItem(
                 title = "libsu",
                 subtitle = "Apache License 2.0\nhttps://github.com/topjohnwu/libsu",
                 link = "https://github.com/topjohnwu/libsu"
             )
-            
+
             LinkItem(
                 title = "Android Jetpack",
                 subtitle = "Apache License 2.0\nhttps://android.googlesource.com/platform/frameworks/support",
                 link = "https://android.googlesource.com/platform/frameworks/support"
             )
-            
+
             LinkItem(
                 title = "Kotlin",
                 subtitle = "Apache License 2.0\nhttps://github.com/JetBrains/kotlin",
@@ -346,7 +346,7 @@ private fun LinkItem(
     link: String
 ) {
     val context = LocalContext.current
-    
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
