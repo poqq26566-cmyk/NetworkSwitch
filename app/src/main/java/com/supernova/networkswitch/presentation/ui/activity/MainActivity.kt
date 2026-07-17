@@ -27,12 +27,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    
+
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         setContent {
             NetworkSwitchTheme {
                 MainScreen(
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-    
+
     override fun onResume() {
         super.onResume()
         viewModel.refreshAllData()
@@ -62,7 +62,7 @@ private fun MainScreen(
     onNetworkModeConfigClick: () -> Unit
 ) {
     val compatibilityState = viewModel.compatibilityState
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -71,13 +71,13 @@ private fun MainScreen(
                     IconButton(onClick = onNetworkModeConfigClick) {
                         Icon(
                             imageVector = Icons.Default.Tune,
-                            contentDescription = "Network Mode Configuration"
+                            contentDescription = "网络模式配置"
                         )
                     }
                     IconButton(onClick = onSettingsClick) {
                         Icon(
                             imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings"
+                            contentDescription = "设置"
                         )
                     }
                 }
@@ -92,14 +92,14 @@ private fun MainScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Compatibility Status Card
+            // 兼容性状态卡片
             CompatibilityCard(
                 compatibilityState = compatibilityState,
                 currentControlMethod = viewModel.selectedMethod,
                 onRetryClick = { viewModel.retryCompatibilityCheck() }
             )
-            
-            // Network Toggle Card (show if compatible)
+
+            // 网络切换卡片（兼容时显示）
             if (compatibilityState is CompatibilityState.Compatible) {
                 NetworkToggleCard(
                     currentMode = viewModel.currentNetworkMode,
@@ -108,8 +108,8 @@ private fun MainScreen(
                     onToggleClick = { viewModel.toggleNetworkMode() }
                 )
             }
-            
-            // Quick Settings Tip Card
+
+            // 快捷设置提示卡片
             QuickSettingsHintCard()
         }
     }
