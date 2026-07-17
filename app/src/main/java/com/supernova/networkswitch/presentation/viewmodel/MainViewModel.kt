@@ -154,12 +154,12 @@ class MainViewModel @Inject constructor(
     }
     
     /**
-     * Get display text for current network mode and next toggle mode
-     */
-    fun getToggleButtonText(): String {
-        val nextMode = toggleModeConfig.getNextMode()
-        return "Switch to ${nextMode.displayName}"
-    }
+ * 获取切换按钮的显示文字（当前模式及下一个切换目标）
+ */
+fun getToggleButtonText(): String {
+    val nextMode = toggleModeConfig.getNextMode()
+    return "切换至 ${nextMode.displayName}"
+}
     
     /**
      * Refresh current network state
